@@ -1,3 +1,4 @@
+using HelloAzure.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -20,15 +21,23 @@ namespace HelloAzure
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks();
+
+            services.AddSignalR().AddJsonProtocol(options => {
+                
+                options.PayloadSerializerOptions.PropertyNamingPolicy = null;
+            });
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        [System.Obsolete]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if(env.IsDevelopment())
@@ -56,6 +65,7 @@ namespace HelloAzure
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapHub<MessageHub>("/MessageHub");
             });
 
             app.UseSpa(spa =>
@@ -69,6 +79,10 @@ namespace HelloAzure
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }
+            });
+            app.UseSignalR(options =>
+            {
+                options.MapHub<MessageHub>("/MessageHub");
             });
         }
     }
