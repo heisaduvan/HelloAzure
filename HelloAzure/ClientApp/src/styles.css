@@ -13,4 +13,8 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+  border-radius:40px;
+}
+.btn-primary + .btn-primary{
+    margin-left:25px;
 }
