@@ -24,6 +24,7 @@ export class ChatComponent implements OnInit {
       this.message.date = new Date();
       this.messages.push(this.message);
       this.chatService.sendMessage(this.message);
+      console.log(this.txtMessage);
       this.txtMessage = "";
     }
   }

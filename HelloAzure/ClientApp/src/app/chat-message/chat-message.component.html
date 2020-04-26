@@ -1,0 +1,24 @@
+<div *ngIf="message">
+  <div class="incoming-message" *ngIf="message.type == 'received'">
+    <div class="incoming-message-img"></div>
+    <div class="incoming-message-content">
+      <p>
+        {{ message.message }}
+      </p>
+      <span class="time-date">
+        {{ message.date | date: "short" }}
+      </span>
+    </div>
+    <div class="outgoing-message" *ngIf="message.type == 'sent'">
+      <div class="outgoing-message-img"></div>
+      <div class="outgoing-message-content">
+        <p>
+          {{ message.message }}
+        </p>
+        <span class="time-date">
+          {{ message.date | date: "short" }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

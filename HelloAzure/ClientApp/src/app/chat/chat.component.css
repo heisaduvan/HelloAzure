@@ -12,37 +12,19 @@
   border-bottom: 1px solid blue;
   padding-bottom: 40px;
 }
-.msg_history {
+.message-history {
   height: 800px;
   width: 100%;
   border: 1px solid blueviolet;
   margin-bottom: 10px;
 }
-.input_msg_write > input {
-  width: 90%;
+.message-write input {
+  width: 900px;
+  border-radius: 3px;
+  outline: seagreen;
 }
-.input_msg_write button {
-  width: 90px;
-  margin-left: 5px;
-}
-.received_withd_msg {
-  border: 1px solid green;
-  background-color: rgba(35, 187, 68, 0.699);
-  width: 60%;
-  border-radius: 5px;
-  margin-left: 5px;
-  margin-top: 5px;
-  padding: 5px;
-  overflow: auto;
-}
-
-.sent_msg {
-  border: 1px solid red;
-  background-color: rgba(177, 190, 51, 0.616);
-  width: 60%;
-  border-radius: 5px;
-  margin-left: 5px;
-  margin-top: 5px;
-  padding: 5px;
-  overflow: auto;
+.message-write button {
+  margin-left: 15px;
+  width: 51px;
+  background-color: rosybrown;
 }
