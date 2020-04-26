@@ -10,7 +10,6 @@ import { HomeComponent } from "./home/home.component";
 import { CounterComponent } from "./counter/counter.component";
 import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { ChatComponent } from "./chat/chat.component";
-import { ChatMessageComponent } from './chat-message/chat-message.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
     CounterComponent,
     FetchDataComponent,
     ChatComponent,
-    ChatMessageComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

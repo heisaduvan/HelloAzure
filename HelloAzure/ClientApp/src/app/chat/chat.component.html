@@ -1,24 +1,76 @@
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">Welcome! This is a chat application!</h4>
+  <p>
+    This application created by ASP.NET Core and Angular 9. It using SignalR to
+    communication. You want to see
+    <a href="https://github.com/isaduvan/HelloAzure" target="_blank">code.</a>
+  </p>
+  <hr />
+  <p class="mb-0">
+    You can type a message to chat room. You can type " Is there anyone there?"
+  </p>
+</div>
 <div class="container">
-  <h3 class="text-center chat_header">Chat Application</h3>
-  <div class="messaging">
-    <div class="messages-box">
-      <div class="message-history">
-        <div *ngFor="let message of messages">
-          <app-chat-message [message]="message"></app-chat-message>
+  <!-- BEGIN : chatHeader -->
+  <div class="chatHeader">
+    <!-- <a href="#" class="BackBtn"
+      ><i class="fa fa-angle-left" aria-hidden="true"></i 
+    ></a> -->
+    <div class="headerTitle">
+      <!-- <div class="NameIcon">SA</div> -->
+      <div class="Txt">
+        <div>You have to join us!</div>
+        <div>How are you feeling today ?</div>
+      </div>
+    </div>
+  </div>
+  <!-- END : chatHeader -->
+
+  <!-- BEGIN : chatContent -->
+  <div class="chatContent">
+    <div *ngFor="let message of messages">
+      <div *ngIf="message">
+        <div *ngIf="message.type == 'received'">
+          <div class="chat-column receive-message">
+            <div class="item">
+              <div class="chat-icon"></div>
+            </div>
+            <div class="item">
+              <div class="chat-message">{{ message.message }}</div>
+              <div class="message-date">{{ message.date | date: "short" }}</div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="message.type == 'sent'">
+          <div class="chat-column sent-message">
+            <div class="item">
+              <div class="chat-icon"></div>
+            </div>
+            <div class="item">
+              <div class="chat-message">{{ message.message }}</div>
+              <div class="message-date">{{ message.date | date: "short" }}</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="message-write">
-      <input
-        type="text"
-        [value]="txtMessage"
-        (input)="txtMessage = $event.target.value"
-        (keydown.enter)="sendMessage()"
-        placeholder="Type a message"
-      />
-      <button class="message-send-button" type="button" (click)="sendMessage()">
-        <i class="fas fa-paper-plane" aria-hidden="true"></i>
-      </button>
-    </div>
   </div>
+  <!-- END : chatContent -->
+
+  <!-- BEGIN : chatSend -->
+  <div class="chatSend">
+    <input
+      type="text"
+      class="sendText"
+      placeholder="Bir Mesaj Gönder..."
+      [value]="txtMessage"
+      (input)="txtMessage = $event.target.value"
+      (keydown.enter)="sendMessage()"
+    />
+
+    <button id="send-message" (click)="sendMessage()">
+      <i class="fas fa-paper-plane" aria-hidden="true"></i>
+    </button>
+  </div>
+  <!-- END : chatSend -->
 </div>
