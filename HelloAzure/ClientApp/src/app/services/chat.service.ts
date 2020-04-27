@@ -10,6 +10,7 @@ export class ChatService {
   private connectionIsEstablished = false;
   private _hubConnection: HubConnection;
   private baseUrl: string;
+  private connectionId: any;
   constructor(@Inject("BASE_URL") baseUrl: string) {
     this.baseUrl = baseUrl;
     this.createConnection();
@@ -18,6 +19,9 @@ export class ChatService {
   }
   sendMessage(message: Message) {
     this._hubConnection.invoke("NewMessage", message);
+  }
+  getConnectionId() {
+    return this.connectionId;
   }
   private createConnection() {
     this._hubConnection = new HubConnectionBuilder()
@@ -31,6 +35,7 @@ export class ChatService {
         this.connectionIsEstablished = true;
         console.log("Hub connection started");
         this.connectionEstablished.emit(true);
+        this.connectionId = this._hubConnection.invoke("GetConnectionId");
       })
       .catch((err) => {
         console.log("Error while establishing connection, retrying...");

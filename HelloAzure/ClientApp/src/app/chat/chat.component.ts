@@ -12,19 +12,23 @@ export class ChatComponent implements OnInit {
   uniqueID: string = new Date().getTime().toString();
   messages = new Array<Message>();
   message = new Message();
+  connectionId: any;
   constructor(private chatService: ChatService, private _ngZone: NgZone) {
     this.subscribeToEvents();
+   
   }
   sendMessage(): void {
     if (this.txtMessage) {
+      this.connectionId = this.chatService.getConnectionId();
       this.message = new Message();
       this.message.clientuniqueid = this.uniqueID;
       this.message.type = "sent";
       this.message.message = this.txtMessage;
       this.message.date = new Date();
+      this.message.hubConnectionId = this.connectionId.__zone_symbol__value;
+      console.log(this.connectionId);
       this.messages.push(this.message);
       this.chatService.sendMessage(this.message);
-      console.log(this.txtMessage);
       this.txtMessage = "";
     }
   }
@@ -38,5 +42,7 @@ export class ChatComponent implements OnInit {
       });
     });
   }
-  ngOnInit() {}
+  ngOnInit() {
+   
+  }
 }

@@ -13,5 +13,9 @@ namespace HelloAzure.Hubs
         {
             await Clients.All.SendAsync("MessageReceived", msg);
         }
+        public string GetConnectionId()
+        {
+            return Context.ConnectionId;
+        }
     }
 }

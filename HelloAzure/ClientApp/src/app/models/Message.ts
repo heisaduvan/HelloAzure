@@ -3,4 +3,5 @@ export class Message {
   type: string;
   message: string;
   date: Date;
+  hubConnectionId: string;
 }

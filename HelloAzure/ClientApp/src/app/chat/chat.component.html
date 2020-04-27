@@ -36,7 +36,7 @@
               <div class="chat-icon"></div>
             </div>
             <div class="item">
-              <div class="chat-message">{{ message.message }}</div>
+              <div class="chat-message">{{message.hubConnectionId}} : {{ message.message }}</div>
               <div class="message-date">{{ message.date | date: "short" }}</div>
             </div>
           </div>
@@ -47,7 +47,7 @@
               <div class="chat-icon"></div>
             </div>
             <div class="item">
-              <div class="chat-message">{{ message.message }}</div>
+              <div class="chat-message">{{message.hubConnectionId}} : {{ message.message }}</div>
               <div class="message-date">{{ message.date | date: "short" }}</div>
             </div>
           </div>
